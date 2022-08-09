@@ -1,0 +1,9 @@
+ffb12a0c5245ebf410a911ae711527eb // api key
+593144f02a8663c558ef2b28ef5196f1377f1610c7ee2ab4205a683dce5a5948 //token
+
+
+//Auth Api Build
+https://trello.com/1/authorize?expiration=never&name=TestApplication&scope=read,write,account&response_type=token&key=ffb12a0c5245ebf410a911ae711527eb
+
+
+https://api.trello.com/1/members/me/?key=ffb12a0c5245ebf410a911ae711527eb&token=593144f02a8663c558ef2b28ef5196f1377f1610c7ee2ab4205a683dce5a5948
