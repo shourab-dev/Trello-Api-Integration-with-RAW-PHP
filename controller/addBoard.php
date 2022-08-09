@@ -28,10 +28,3 @@ if (isset($_REQUEST['addBoard'])) {
   curl_close($curl);
   header("Location: ../dashboard/board.php");
 }
-
-// $response = Unirest\Request::post(
-//   'https://api.trello.com/1/boards/',
-//   $query
-// );
-
-// var_dump($response)

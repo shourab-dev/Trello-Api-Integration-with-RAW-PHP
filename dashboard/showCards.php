@@ -16,8 +16,8 @@ curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($curl);
 $cards = json_decode($response);
-echo "<pre>";
-print_r($cards);
+// echo "<pre>";
+// print_r($cards[1]->labels);
 
 
 ?>
@@ -33,7 +33,7 @@ print_r($cards);
                 <?php
                 foreach ($cards as $card) {
                 ?>
-                    <div class="card shadow  py-4 my-2 mx-2 text-center">
+                    <div class="card shadow  py-4 my-2 mx-2 text-center" style="background:<?= count($card->labels)  > 0 ? $card->labels[0]->color . ';color:white;' : '' ?>">
                         <h6 class="mb-0"><?= $card->name ?></h6>
                         <p><?= $card->desc ?></p>
                     </div>
@@ -51,11 +51,11 @@ print_r($cards);
                     <h4>Add Card</h4>
                 </div>
                 <div class="card-body">
-                    <form action="../controller/storeList.php" method="POST">
-                        <input type="hidden" name="boardId">
-                        <input type="hidden" name="boardName">
-                        <input type="text" name="listName" class="form-control mb-3" placeholder="Card Name">
-                        <button name="addList" type="submit" class="btn btn-dark w-100">Add Card</button>
+                    <form action="../controller/addCard.php" method="POST">
+                        <input type="hidden" name="listId" value="<?= $listId ?>">
+                        <input type="text" name="cardName" class="form-control mb-3" placeholder="Card Name">
+                        <textarea name="cardDesc" id="" cols="30" rows="5" placeholder="Card Detail" class="form-control mb-3"></textarea>
+                        <button name="addCard" type="submit" class="btn btn-dark w-100">Add Card</button>
                     </form>
                 </div>
             </div>
