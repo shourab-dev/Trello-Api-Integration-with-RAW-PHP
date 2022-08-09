@@ -27,7 +27,7 @@ if (isset($_REQUEST['checkAuth'])) {
             'token' => $clientSecret
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $organization = 'https://api.trello.com/1/members/' . $auth->id . '/organizations?' . http_build_query($query);
+        $organization = 'https://api.trello.com/1/members/' . 'me' . '/organizations?' . http_build_query($query);
 
         curl_setopt($ch, CURLOPT_URL, $organization);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -35,10 +35,13 @@ if (isset($_REQUEST['checkAuth'])) {
 
         $organizationData = json_decode($responseOrganizationData);
         $organizationId = $organizationData[0]->id;
-        print_r($organizationId);
 
-
+        $_SESSION['organizationId'] = $organizationId;
+        $_SESSION['auth'] = $auth;
+        $_SESSION['key'] = $apiKey;
+        $_SESSION['token'] = $clientSecret;
         curl_close($ch);
+        header("Location: ../dashboard/board.php");
     } else {
         header("Location: ../index.php");
     }
